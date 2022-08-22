@@ -1,0 +1,121 @@
+/* .product-card {
+  padding: 0.5em;
+}
+.product-card .product-logo {
+  height: 40px;
+  margin-top: 0.5em;
+}
+.product-title {
+  font-size: 0.9em;
+  margin-top: 0.5em;
+  line-height: 1.1em;
+  white-space: normal;
+  max-height: 2.2em;
+}
+.product-desc {
+  display: none;
+}
+.product-card .product-tag {
+  font-size: 9px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: normal;
+  position: relative;
+  height: 18px;
+} */
+
+.product-card {
+  position: relative;
+  cursor: pointer;
+  background-color: white;
+  padding: 1.5em;
+  overflow: hidden;
+  box-shadow: 0px 4px 16px rgba(27, 27, 27, 0.24);
+  border-radius: 8px;
+  /* height: 100%; */
+  width: 200px;
+  flex: 1 0 auto;
+}
+.product-type {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background-color: hsl(0, 0%, 79%);
+}
+.product-type.connector {
+  background-color: hsl(65, 65%, 50%);
+}
+.product-type.process {
+  background-color: hsl(46, 100%, 58%);
+}
+.product-type.solution {
+  background-color: hsl(164, 59%, 40%);
+}
+.product-type.util {
+  background-color: hsl(192, 63%, 56%);
+}
+.product-logo {
+  height: 100px;
+  margin-top: 1.5em;
+  display: flex;
+  justify-content: center;
+}
+.product-logo img {
+  max-height: 100%; 
+  max-width: 100%;
+}
+.product-tags {
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex-flow: row-reverse wrap;
+}
+.product-tag {
+  color: white;
+  font-size: 14px;
+  padding: 6px 12px;
+  background-color: #007095;
+  border-radius: 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 0 0 0.5em 0.5em;
+}
+.product-title {
+  margin-top: 2em;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 1.25em;
+  text-align: center;
+}
+.product-desc {
+  max-height: 7.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5em;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .product-card {
+    padding: 1em;
+  }
+  .product-tag {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .product-logo {
+    height: 80px;
+    margin-top: 1em;
+  }
+  .product-title {
+    margin-top: 1em;
+    font-size: 17px;
+    margin-bottom: 0.5em;
+  }
+  .product-desc {
+    max-height: 4.5em;
+    font-size: 14px;
+  }
+}
