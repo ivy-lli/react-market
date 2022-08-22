@@ -1,0 +1,13 @@
+.product-filter {
+  display: flex;
+  gap: 1.5rem;
+}
+.product-filter > .rw-multiselect,
+.product-filter > .product-filter-search {
+  width: 100%;
+}
+.product-filter-search {
+  max-height: 38px;
+  border: #ccc 1px solid;
+  border-radius: 4px;
+}

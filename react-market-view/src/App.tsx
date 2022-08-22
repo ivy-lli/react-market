@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { getArtifacts } from './api/marketApi';
 import ProductCard from './components/ProductCard';
-import {Product} from './api/product';
+import { Product } from './api/product';
+import ProductFilter from './components/ProductFilter';
 
 function App() {
   const [artifacts, setArtifacts] = useState<Product[]>([]);
@@ -14,23 +15,15 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
+    <div className='App'>
+      <ProductFilter />
+      <div className='contribute-hint'>
+        Contribute to the community and build your own connector. <a href='https://dev.axonivy.com/link/market-contribute'>How to?</a>
+      </div>
       <div className='products'>
-        {artifacts.map(artifact => <ProductCard key={artifact.key} product={artifact} />)}
+        {artifacts.map(artifact => (
+          <ProductCard key={artifact.key} product={artifact} />
+        ))}
       </div>
     </div>
   );
