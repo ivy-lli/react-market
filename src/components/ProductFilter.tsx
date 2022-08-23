@@ -7,6 +7,7 @@ type ProductFilterProps = {
   tags: string[];
   selectedTags: string[];
   onTagChange: (newSelectedTags: string[]) => void;
+  searchFilter: string;
   onInputChange: (newSearchInput: string) => void;
 };
 
@@ -20,7 +21,7 @@ const ProductFilter = (props: ProductFilterProps) => {
         showPlaceholderWithValues={true}
         onChange={value => props.onTagChange(value)}
       />
-      <input className='product-filter-search' onChange={event => props.onInputChange(event.target.value)} />
+      <input className='product-filter-search' value={props.searchFilter} onChange={event => props.onInputChange(event.target.value)} />
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { Product, Type } from './api/data';
 import ProductFilter from './components/ProductFilter';
 import ProductTypeFilter from './components/ProductTypeFilter';
 import Loading from './components/Loading';
+import ResetProductFilter from './components/ResetProductFilter';
 
 const DEFAULT_ACTIVE_TYPE = '';
 const DEFAULT_SELECTED_TAGS: string[] = [];
@@ -45,15 +46,27 @@ function App() {
     setProducts(filteredProducts);
   }, [activeType, selectedTags, searchFilter]);
 
+  const shouldResetFilterBeVisible = (): boolean => {
+    return products.length !== artifacts.length;
+  };
+
+  const resetFilters = () => {
+    setActiveType(DEFAULT_ACTIVE_TYPE);
+    setSelectedTags(DEFAULT_SELECTED_TAGS);
+    setSearchFilter(DEFAULT_SEARCH_FILTER);
+  };
+
   return (
     <div className='App'>
       <ProductFilter
         tags={tags}
         selectedTags={selectedTags}
         onTagChange={(newSelectedTags: string[]) => setSelectedTags(newSelectedTags)}
-        onInputChange={(newSearchInput: string) => setSearchFilter(newSearchInput)}
+        searchFilter={searchFilter}
+        onInputChange={(newSearchFilter: string) => setSearchFilter(newSearchFilter)}
       />
       <ProductTypeFilter types={types} activeType={activeType} onClick={(newActiveType: string) => setActiveType(newActiveType)} />
+      {shouldResetFilterBeVisible() && <ResetProductFilter onClick={() => resetFilters()} />}
       <div className='contribute-hint'>
         Contribute to the community and build your own connector. <a href='https://dev.axonivy.com/link/market-contribute'>How to?</a>
       </div>
