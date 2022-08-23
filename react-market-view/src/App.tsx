@@ -6,6 +6,7 @@ import ProductCard from './components/ProductCard';
 import { Product, Type } from './api/data';
 import ProductFilter from './components/ProductFilter';
 import ProductTypeFilter from './components/ProductTypeFilter';
+import Loading from './components/Loading';
 // import 'http://localhost/assets/css/icons.css';
 
 function App() {
@@ -70,9 +71,7 @@ function App() {
         Contribute to the community and build your own connector. <a href='https://dev.axonivy.com/link/market-contribute'>How to?</a>
       </div>
       <div className='products'>
-        {products.map(product => (
-          <ProductCard key={product.key} product={product} />
-        ))}
+        {products.length > 0 ? products.map(product => <ProductCard key={product.key} product={product} />) : <Loading />}
       </div>
     </div>
   );

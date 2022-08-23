@@ -1,4 +1,5 @@
 .product-filter {
+  margin: 1rem;
   display: flex;
   gap: 1.5rem;
 }
@@ -10,4 +11,10 @@
   max-height: 38px;
   border: #ccc 1px solid;
   border-radius: 4px;
+}
+.product-filter-search:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25), inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: box-shadow 0.15s ease-in-out;
 }
