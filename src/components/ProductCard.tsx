@@ -2,16 +2,18 @@ import React from 'react';
 import { baseUrl } from '../api/marketApi';
 import { Product } from '../api/data';
 import './ProductCard.css';
+import { useNavigate } from 'react-router-dom';
 
 type ProductProps = {
   product: Product;
 };
 
 const ProductCard = ({ product }: ProductProps) => {
-  const productOnClick = (url: string) => (location.href = url);
+  const navigate = useNavigate();
+  const productOnClick = (url: string) => navigate(url);
 
   return (
-    <div className='product-card zoom' onClick={() => productOnClick(product.url)}>
+    <div className='product-card zoom' onClick={() => productOnClick(product.key)}>
       <div className={'product-type ' + product.type}></div>
       <div className='product-tags p-grid p-dir-rev'>
         <span className='product-tag'>{product.tags[0]}</span>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import logo from './logo.svg';
-import './App.css';
+import './MarketOverview.css';
 import { getMarketData } from './api/marketApi';
 import ProductCard from './components/ProductCard';
 import { Product, Type } from './api/data';
@@ -13,7 +12,7 @@ const DEFAULT_ACTIVE_TYPE = '';
 const DEFAULT_SELECTED_TAGS: string[] = [];
 const DEFAULT_SEARCH_FILTER = '';
 
-function App() {
+function MarketOverview() {
   const [artifacts, setArtifacts] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [types, setTypes] = useState<Type[]>([]);
@@ -57,7 +56,7 @@ function App() {
   };
 
   return (
-    <div className='App'>
+    <div className='market'>
       <ProductFilter
         tags={tags}
         selectedTags={selectedTags}
@@ -78,4 +77,4 @@ function App() {
   );
 }
 
-export default App;
+export default MarketOverview;
