@@ -1,46 +1,22 @@
-# Getting Started with Create React App
+# Reactive Axon Ivy Market
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+We introduced the Axon Ivy Market with LE 9.2, with the idea of providing a single point where you can consume connectors, applications and demos to enrich your solutions.
 
-## Available Scripts
+The market is functional, but it has one big drawback: because it was built when only a few products existed, it doesn't scale very well. Especially when many new products will follow in the future (maybe [contributed](https://dev.axonivy.com/link/market-contribute) by you? :)).
 
-In the project directory, you can run:
+I'm Lukas and my goal in the Code Camp 2022 is to improve the existing market view with modern web technologies for a better user experience and scalability.
 
-### `npm start`
+## The current state of the Axon Ivy Market
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Today, the Axon Ivy Market is running integrated into our [dev.axonivy.com](https://dev.axonivy.com/market) site. The page itself uses PHP in the background and Twig for the frontend.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The market page itself is one overview page and the detail views of the single products. And especially the overview page provides not the best user experiance, in my opinion:
 
-### `npm test`
+- Since it displays all the products directly, they all have to be loaded as well. This leads to a long loading time, during which the user cannot see or do anything.
+- filtering is done via query parameters and a refresh of the page. The refresh is triggered after a timeout, after no new input has been made. This doesn't mean, however, that the user may press a new key at that very moment, which will then be lost due to the refresh.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Vision of a reactive Axon Ivy Market
 
-### `npm run build`
+The modern Axon Ivy Market should at least attack the biggest user experience problems like filtering. This with [React](https://reactjs.org) as web technology.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+But let's see how far I will get.
