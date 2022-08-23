@@ -3,11 +3,24 @@ import { Multiselect } from 'react-widgets/cjs';
 import './ProductFilter.css';
 import 'react-widgets/styles.css';
 
-const ProductFilter = () => {
+type ProductFilterProps = {
+  tags: string[];
+  selectedTags: string[];
+  onTagChange: (newSelectedTags: string[]) => void;
+  onInputChange: (newSearchInput: string) => void;
+};
+
+const ProductFilter = (props: ProductFilterProps) => {
   return (
     <div className='product-filter'>
-      <Multiselect data={['connector', 'demo']} placeholder='Topics' showPlaceholderWithValues={true} />
-      <input className='product-filter-search' />
+      <Multiselect
+        data={props.tags}
+        value={props.selectedTags}
+        placeholder='Topics'
+        showPlaceholderWithValues={true}
+        onChange={value => props.onTagChange(value)}
+      />
+      <input className='product-filter-search' onChange={event => props.onInputChange(event.target.value)} />
     </div>
   );
 };

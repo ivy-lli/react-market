@@ -1,6 +1,6 @@
 import React from 'react';
 import { baseUrl } from '../api/marketApi';
-import { Product } from '../api/product';
+import { Product } from '../api/data';
 import './ProductCard.css';
 
 type ProductProps = {
