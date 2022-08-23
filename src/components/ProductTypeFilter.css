@@ -2,6 +2,7 @@
   margin-top: 1rem;
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 .types .type {
@@ -11,6 +12,10 @@
   border: solid 2px;
   cursor: pointer;
   border-color: hsl(0, 0%, 79%);
+  height: 28px;
+}
+.types .type i {
+  margin-right: 0.3rem;
 }
 .types .type.selected {
   font-weight: 700;

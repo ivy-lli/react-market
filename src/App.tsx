@@ -7,16 +7,19 @@ import { Product, Type } from './api/data';
 import ProductFilter from './components/ProductFilter';
 import ProductTypeFilter from './components/ProductTypeFilter';
 import Loading from './components/Loading';
-// import 'http://localhost/assets/css/icons.css';
+
+const DEFAULT_ACTIVE_TYPE = '';
+const DEFAULT_SELECTED_TAGS: string[] = [];
+const DEFAULT_SEARCH_FILTER = '';
 
 function App() {
   const [artifacts, setArtifacts] = useState<Product[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [types, setTypes] = useState<Type[]>([]);
-  const [activeType, setActiveType] = useState<string>('');
+  const [activeType, setActiveType] = useState<string>(DEFAULT_ACTIVE_TYPE);
   const [tags, setTags] = useState<string[]>([]);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [searchFilter, setSearchFilter] = useState<string>('');
+  const [selectedTags, setSelectedTags] = useState<string[]>(DEFAULT_SELECTED_TAGS);
+  const [searchFilter, setSearchFilter] = useState<string>(DEFAULT_SEARCH_FILTER);
   useEffect(() => {
     getMarketData().then(data => {
       setArtifacts(data.artifacts);
@@ -25,53 +28,38 @@ function App() {
       setTags(data.tags);
     });
   }, []);
-
-  const filterByType = (newActiveType: string): void => {
-    setActiveType(newActiveType);
-    if (newActiveType === '') {
-      setProducts(artifacts);
-    } else {
-      setProducts(artifacts.filter(artifact => artifact.type === newActiveType));
+  useEffect(() => {
+    let filteredProducts = artifacts;
+    if (activeType !== DEFAULT_ACTIVE_TYPE) {
+      filteredProducts = filteredProducts.filter(product => product.type === activeType);
     }
-  };
-
-  const filterByTags = (newSelectedTags: string[]): void => {
-    setSelectedTags(newSelectedTags);
-    if (newSelectedTags.length === 0) {
-      setProducts(artifacts);
-    } else {
-      setProducts(artifacts.filter(artifact => artifact.tags.some(tag => newSelectedTags.includes(tag.toLocaleUpperCase()))));
+    if (selectedTags.length !== DEFAULT_SELECTED_TAGS.length) {
+      filteredProducts = filteredProducts.filter(product => product.tags.some(tag => selectedTags.includes(tag.toLocaleUpperCase())));
     }
-  };
-
-  const filterBySearch = (newSearchInput: string): void => {
-    setSearchFilter(newSearchInput);
-    const filter = newSearchInput.toLocaleLowerCase();
-    if (filter === '') {
-      setProducts(artifacts);
-    } else {
-      setProducts(
-        artifacts.filter(
-          artifact => artifact.name.toLocaleLowerCase().includes(filter) || artifact.shortDesc.toLocaleLowerCase().includes(filter)
-        )
+    const filter = searchFilter.toLocaleLowerCase();
+    if (filter !== DEFAULT_SEARCH_FILTER) {
+      filteredProducts = filteredProducts.filter(
+        product => product.name.toLocaleLowerCase().includes(filter) || product.shortDesc.toLocaleLowerCase().includes(filter)
       );
     }
-  };
+    setProducts(filteredProducts);
+  }, [activeType, selectedTags, searchFilter]);
 
   return (
     <div className='App'>
       <ProductFilter
         tags={tags}
         selectedTags={selectedTags}
-        onTagChange={(newSelectedTags: string[]) => filterByTags(newSelectedTags)}
-        onInputChange={(newSearchInput: string) => filterBySearch(newSearchInput)}
+        onTagChange={(newSelectedTags: string[]) => setSelectedTags(newSelectedTags)}
+        onInputChange={(newSearchInput: string) => setSearchFilter(newSearchInput)}
       />
-      <ProductTypeFilter types={types} activeType={activeType} onClick={(newActiveType: string) => filterByType(newActiveType)} />
+      <ProductTypeFilter types={types} activeType={activeType} onClick={(newActiveType: string) => setActiveType(newActiveType)} />
       <div className='contribute-hint'>
         Contribute to the community and build your own connector. <a href='https://dev.axonivy.com/link/market-contribute'>How to?</a>
       </div>
       <div className='products'>
-        {products.length > 0 ? products.map(product => <ProductCard key={product.key} product={product} />) : <Loading />}
+        {products.length > 0 && products.map(product => <ProductCard key={product.key} product={product} />)}
+        {artifacts.length === 0 && <Loading />}
       </div>
     </div>
   );
