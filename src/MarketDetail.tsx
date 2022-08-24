@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Product } from './api/data';
+import { Product, VersionedProductData } from './api/data';
 import { getProductData } from './api/marketApi';
 import Description from './components/detail/Description';
 import Header from './components/detail/Header';
@@ -14,9 +14,17 @@ function MarketDetail() {
   const key = params.key ? params.key : '';
 
   const [product, setProduct] = useState<Product>();
+  const [versionedData, setVersionedData] = useState<VersionedProductData>({
+    description: '',
+    assetBaseUrl: '',
+    docUrl: '',
+    openApiUrl: ''
+  });
+  const [version, setVersion] = useState<string>();
   useEffect(() => {
     getProductData(key).then(data => {
       setProduct(data.product);
+      setVersionedData(data.versionedData);
     });
   }, []);
 
@@ -28,8 +36,8 @@ function MarketDetail() {
           <Header product={product} />
           <ProductData product={product} />
           <div className='product-info'>
-            <Description description='blabla' />
-            <Meta product={product} />
+            <Description description={versionedData.description} assetBaseUrl={versionedData.assetBaseUrl} />
+            <Meta product={product} versionedData={versionedData} />
           </div>
         </>
       )}

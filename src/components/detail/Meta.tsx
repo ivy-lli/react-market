@@ -1,14 +1,15 @@
 import { link } from 'fs';
 import React from 'react';
-import { Product } from '../../api/data';
+import { Product, VersionedProductData } from '../../api/data';
 import { baseUrl } from '../../api/marketApi';
 import './Meta.css';
 
 type MetaProps = {
   product: Product;
+  versionedData: VersionedProductData;
 };
 
-const Meta = ({ product }: MetaProps) => {
+const Meta = ({ product, versionedData }: MetaProps) => {
   const getInTouchLink = `https://www.axonivy.com/marketplace/contact/?market_solutions=${product.key}`;
   const sourceUrlDomain = (sourceUrl: string) => new URL(sourceUrl).host;
 
@@ -32,8 +33,10 @@ const Meta = ({ product }: MetaProps) => {
 
       <div className='product-meta-spaceer'></div>
 
-      {/* {product.docUrl && <MetaInfo type='Documentation' link={{ url: product.docUrl, text: 'External Link' }} />}
-      {product.openApiUrl && <MetaInfo type='Public API' link={{ url: `api-browser?url=${product.openApiUrl}`, text: 'Browse API' }} />} */}
+      {versionedData.docUrl && <MetaInfo type='Documentation' link={{ url: versionedData.docUrl, text: 'External Link' }} />}
+      {versionedData.openApiUrl && (
+        <MetaInfo type='Public API' link={{ url: `api-browser?url=${versionedData.openApiUrl}`, text: 'Browse API' }} />
+      )}
       {product.sourceUrl && <MetaInfo type='Source' link={{ url: product.sourceUrl, text: sourceUrlDomain(product.sourceUrl) }} />}
       {product.statusBadgeUrl && <MetaInfo type='Status' imgUrl={product.statusBadgeUrl} />}
 

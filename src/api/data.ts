@@ -20,6 +20,13 @@ export interface Product {
   contactUs: boolean;
 }
 
+export interface VersionedProductData {
+  description: string;
+  assetBaseUrl: string;
+  openApiUrl: string;
+  docUrl: string;
+}
+
 export interface Type {
   name: string;
   filter: string;

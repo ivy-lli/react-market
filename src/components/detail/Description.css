@@ -6,6 +6,7 @@
 }
 .product-description {
   flex-grow: 1;
+  flex-basis: 0;
 }
 .product-tabs-anchor {
   display: block;
@@ -27,6 +28,9 @@
   color: #1b1b1b;
   padding: 1em;
 }
+.readme-content {
+  line-height: 1.75;
+}
 .readme-content h1 {
   display: none;
 }
@@ -42,21 +46,24 @@
 }
 .readme-content ul,
 .readme-content p {
-  margin-bottom: 1em;
+  margin: 0 0 1em 0;
 }
 .readme-content ul {
   list-style: none;
+  padding-left: 1em;
 }
 .readme-content ul li {
   position: relative;
+  padding-left: 0.5em;
+  padding-bottom: 0.25em;
 }
 .readme-content ul li:before {
   content: '';
   display: inline-block;
   height: 1em;
   width: 1em;
-  mask: url('/images/icons/check-circle-1.svg') no-repeat center;
-  -webkit-mask: url('/images/icons/check-circle-1.svg') no-repeat center;
+  mask: url('http://localhost/images/icons/check-circle.svg') no-repeat center;
+  -webkit-mask: url('http://localhost/images/icons/check-circle.svg') no-repeat center;
   background-color: #1b1b1b;
   margin-right: 0.5em;
   position: absolute;
