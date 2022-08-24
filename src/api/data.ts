@@ -1,11 +1,22 @@
 export interface Product {
   key: string;
   name: string;
+  version: string;
   shortDesc: string;
+  vendor: string;
   vendorImage: string;
+  vendorUrl: string;
   type: string;
+  typeIcon: string;
   tags: string[];
-  url: string;
+  platformReview: string;
+  cost: string;
+  sourceUrl: string;
+  statusBadgeUrl: string;
+  language: string;
+  industry: string;
+  compatibility: string;
+  installationCount: number;
 }
 
 export interface Type {

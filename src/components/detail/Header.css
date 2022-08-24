@@ -1,0 +1,7 @@
+.product-detail-header h1 {
+  display: flex;
+}
+.product-detail-header .image {
+  width: 4.5rem;
+  margin-right: 1rem;
+}

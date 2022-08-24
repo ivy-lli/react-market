@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './MarketOverview.css';
 import { getMarketData } from './api/marketApi';
-import ProductCard from './components/ProductCard';
 import { Product, Type } from './api/data';
-import ProductFilter from './components/ProductFilter';
-import ProductTypeFilter from './components/ProductTypeFilter';
 import Loading from './components/Loading';
-import ResetProductFilter from './components/ResetProductFilter';
+import ProductFilter from './components/overview/ProductFilter';
+import ProductTypeFilter from './components/overview/ProductTypeFilter';
+import ResetProductFilter from './components/overview/ResetProductFilter';
+import ProductCard from './components/overview/ProductCard';
 
 const DEFAULT_ACTIVE_TYPE = '';
 const DEFAULT_SELECTED_TAGS: string[] = [];

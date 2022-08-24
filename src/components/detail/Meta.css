@@ -1,0 +1,28 @@
+.product-meta {
+  width: 12em;
+  line-height: 1.75;
+}
+.product-meta-title {
+  font-weight: 700;
+  height: 2em;
+  margin-bottom: 1em;
+}
+.product-meta-vendor {
+  display: block;
+  max-width: 16rem;
+}
+.product-meta-info {
+  font-size: 14px;
+}
+.product-meta-info .meta-type {
+  color: #7c7c7c;
+}
+.product-meta-info .meta-data {
+  float: right;
+}
+.product-meta-info .meta-data.capitalize {
+  text-transform: capitalize;
+}
+.product-meta-spaceer {
+  margin: 1em 0;
+}

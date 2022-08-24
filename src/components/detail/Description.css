@@ -1,0 +1,91 @@
+.product-info {
+  padding: 2em 0 1em 0;
+  gap: 2em;
+  display: flex;
+  flex-wrap: wrap;
+}
+.product-description {
+  flex-grow: 1;
+}
+.product-tabs-anchor {
+  display: block;
+  position: relative;
+  top: -100px;
+  visibility: hidden;
+}
+.tab-button {
+  height: 2em;
+  display: inline-block;
+  margin-bottom: 2em;
+}
+.tab-button.selected {
+  font-weight: 700;
+  border-bottom: 2px solid #007095;
+}
+.tab-button a {
+  text-decoration: none;
+  color: #1b1b1b;
+  padding: 1em;
+}
+.readme-content h1 {
+  display: none;
+}
+.readme-content h2,
+.readme-content h3,
+.readme-content h4,
+.readme-content h5,
+.readme-content h6 {
+  margin-bottom: 0.2em;
+}
+.readme-content .meta-content {
+  margin-bottom: 20px;
+}
+.readme-content ul,
+.readme-content p {
+  margin-bottom: 1em;
+}
+.readme-content ul {
+  list-style: none;
+}
+.readme-content ul li {
+  position: relative;
+}
+.readme-content ul li:before {
+  content: '';
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  mask: url('/images/icons/check-circle-1.svg') no-repeat center;
+  -webkit-mask: url('/images/icons/check-circle-1.svg') no-repeat center;
+  background-color: #1b1b1b;
+  margin-right: 0.5em;
+  position: absolute;
+  left: -1em;
+  top: 6px;
+}
+.image.fit {
+  max-width: 100%;
+  width: unset;
+}
+
+@media screen and (max-width: 768px) {
+  .product-description {
+    flex-direction: column;
+  }
+  /*IE11 fix*/
+  .product-description .p-col {
+    flex: 0 0 auto;
+  }
+  .product-meta {
+    width: 100%;
+  }
+}
+/*IE11 fix*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .readme-content ul {
+    list-style: disc;
+  }
+  .readme-content ul li:before {
+    display: none;
+  }
+}

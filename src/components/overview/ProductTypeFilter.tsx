@@ -1,5 +1,5 @@
 import React from 'react';
-import { Type } from '../api/data';
+import { Type } from '../../api/data';
 import './ProductTypeFilter.css';
 
 type ProductTypeFilterProps = {

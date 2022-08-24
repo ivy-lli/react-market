@@ -1,8 +1,8 @@
 import React from 'react';
-import { baseUrl } from '../api/marketApi';
-import { Product } from '../api/data';
 import './ProductCard.css';
 import { useNavigate } from 'react-router-dom';
+import { Product } from '../../api/data';
+import { baseUrl } from '../../api/marketApi';
 
 type ProductProps = {
   product: Product;
