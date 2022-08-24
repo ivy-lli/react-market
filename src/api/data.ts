@@ -17,6 +17,7 @@ export interface Product {
   industry: string;
   compatibility: string;
   installationCount: number;
+  contactUs: boolean;
 }
 
 export interface Type {
