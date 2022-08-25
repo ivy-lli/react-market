@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Header.css';
 import { Product } from '../../api/data';
 import { baseUrl } from '../../api/marketApi';
+import { CSSTransition } from 'react-transition-group';
 
 type HeaderProps = {
   product: Product;
@@ -31,7 +32,9 @@ const Header = ({ product }: HeaderProps) => {
         <HeaderButton name='Download' section='download' onClick={buttonOnClick} outlined={true} />
         {product.contactUs && <ContactUsButton getInTouchLink={getInTouchLink} />}
       </div>
-      <InstallSection activeSection={activeSection} />
+      <CSSTransition in={activeSection === 'install-warn'} timeout={300} classNames='section' unmountOnExit>
+        <InstallSection />
+      </CSSTransition>
     </>
   );
 };
@@ -63,15 +66,12 @@ const ContactUsButton = ({ getInTouchLink }: ContactUsButtonProps) => {
   );
 };
 
-type InstallSectionProps = {
-  activeSection: string;
-};
-
-const InstallSection = (props: InstallSectionProps) => {
+const InstallSection = () => {
   const section = 'install-warn';
   return (
-    <div className='product-install-open-market' style={props.activeSection === section ? {} : { display: 'none' }}>
-      <i className='si si-info'></i> Please open the
+    <div className='product-install-open-market'>
+      <i className='si si-info'></i>
+      <span> Please open the </span>
       <a href={`${baseUrl}/doc/dev/market/index.html`}>Axon Ivy Market</a> inside your
       <a href={`${baseUrl}/download`}>Axon Ivy Designer</a> (min 9.2.0)
     </div>
