@@ -55,6 +55,11 @@
   left: 50%;
 }
 
+.market-detail .axonivy-loader {
+  position: absolute;
+  top: 50%;
+}
+
 .axonivy-loader h5 {
   position: relative;
   top: 75px;
