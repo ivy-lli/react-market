@@ -10,8 +10,8 @@ type MetaProps = {
 };
 
 const Meta = ({ product, versionedData }: MetaProps) => {
-  const getInTouchLink = `https://www.axonivy.com/marketplace/contact/?market_solutions=${product.key}`;
   const sourceUrlDomain = (sourceUrl: string) => new URL(sourceUrl).host;
+  const getInTouchLink = `https://www.axonivy.com/marketplace/contact/?market_solutions=${product.key}`;
 
   return (
     <div className='product-meta'>
@@ -33,9 +33,11 @@ const Meta = ({ product, versionedData }: MetaProps) => {
 
       <div className='product-meta-spaceer'></div>
 
-      {versionedData.docUrl && <MetaInfo type='Documentation' link={{ url: versionedData.docUrl, text: 'External Link' }} />}
+      {versionedData.docUrl && (
+        <MetaInfo type='Documentation' link={{ url: `${baseUrl}/${versionedData.docUrl}`, text: 'External Link' }} />
+      )}
       {versionedData.openApiUrl && (
-        <MetaInfo type='Public API' link={{ url: `api-browser?url=${versionedData.openApiUrl}`, text: 'Browse API' }} />
+        <MetaInfo type='Public API' link={{ url: `${baseUrl}/api-browser?url=${versionedData.openApiUrl}`, text: 'Browse API' }} />
       )}
       {product.sourceUrl && <MetaInfo type='Source' link={{ url: product.sourceUrl, text: sourceUrlDomain(product.sourceUrl) }} />}
       {product.statusBadgeUrl && <MetaInfo type='Status' imgUrl={product.statusBadgeUrl} />}

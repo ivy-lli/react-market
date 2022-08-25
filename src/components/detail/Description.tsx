@@ -9,12 +9,14 @@ type DescriptionProps = {
 };
 
 const Description = ({ description, assetBaseUrl }: DescriptionProps) => {
-  const [activeTab, setActiveTab] = useState<string>('description');
+  const [activeTab, setActiveTab] = useState<string>('desc');
   const setupContent = description.split('## Setup');
   const demoContent = setupContent[0].split('## Demo');
   const desc = demoContent[0];
   const demo = demoContent[1];
   const setup = setupContent[1];
+
+  const tabChange = (newActiveTab: string) => setActiveTab(newActiveTab);
 
   const imageUrlFixer: ShowdownExtension = {
     type: 'output',
@@ -22,28 +24,20 @@ const Description = ({ description, assetBaseUrl }: DescriptionProps) => {
     replace: `<img src="${baseUrl + assetBaseUrl}/images`
   };
 
-  const tabChange = (newActiveTab: string) => setActiveTab(newActiveTab);
-
   return (
     <div className='product-description'>
-      <Tab name='Description' activeTab={activeTab} onClick={tabChange} />
-      {demo && <Tab name='Demo' activeTab={activeTab} onClick={tabChange} />}
-      {setup && <Tab name='Setup' activeTab={activeTab} onClick={tabChange} />}
-
-      <div id='description' className='readme-content'>
-        <MarkdownView markdown={desc} extensions={[imageUrlFixer]} />
-      </div>
-      <div id='demo' className='readme-content' style={{ display: 'none' }}>
-        <MarkdownView markdown={demo} extensions={[imageUrlFixer]} />
-      </div>
-      <div id='setup' className='readme-content' style={{ display: 'none' }}>
-        <MarkdownView markdown={setup} extensions={[imageUrlFixer]} />
-      </div>
+      <Tab id='desc' name='Description' activeTab={activeTab} onClick={tabChange} />
+      {demo && <Tab id='demo' name='Demo' activeTab={activeTab} onClick={tabChange} />}
+      {setup && <Tab id='setup' name='Setup' activeTab={activeTab} onClick={tabChange} />}
+      <DescriptionView id='desc' activeView={activeTab} content={desc} imageUrlExt={imageUrlFixer} />
+      <DescriptionView id='demo' activeView={activeTab} content={demo} imageUrlExt={imageUrlFixer} />
+      <DescriptionView id='setup' activeView={activeTab} content={setup} imageUrlExt={imageUrlFixer} />
     </div>
   );
 };
 
 type TabProps = {
+  id: string;
   name: string;
   activeTab: string;
   onClick: (newActiveTab: string) => void;
@@ -51,14 +45,26 @@ type TabProps = {
 
 const Tab = (props: TabProps) => {
   return (
-    <span
-      className={`tab-button ${props.activeTab === props.name.toLocaleLowerCase() ? ' selected' : ''}`}
-      onClick={() => props.onClick(props.name.toLocaleLowerCase())}
-    >
+    <span className={`tab-button ${props.activeTab === props.id ? ' selected' : ''}`} onClick={() => props.onClick(props.id)}>
       <a href='#tabs' className='product-description-tab'>
         {props.name}
       </a>
     </span>
+  );
+};
+
+type DescriptionViewProps = {
+  id: string;
+  content: string;
+  activeView: string;
+  imageUrlExt: ShowdownExtension;
+};
+
+const DescriptionView = (props: DescriptionViewProps) => {
+  return (
+    <div className='readme-content' style={props.activeView !== props.id ? { display: 'none' } : {}}>
+      <MarkdownView markdown={props.content} extensions={[props.imageUrlExt]} />
+    </div>
   );
 };
 

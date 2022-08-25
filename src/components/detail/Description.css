@@ -28,6 +28,9 @@
   color: #1b1b1b;
   padding: 1em;
 }
+.tab-button a:hover {
+  text-decoration: none;
+}
 .readme-content {
   line-height: 1.75;
 }
@@ -70,7 +73,7 @@
   left: -1em;
   top: 6px;
 }
-.image.fit {
+.readme-content img {
   max-width: 100%;
   width: unset;
 }

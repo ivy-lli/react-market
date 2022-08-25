@@ -4,12 +4,14 @@
 }
 .product-detail-header h1 {
   flex-grow: 1;
+  display: flex;
 }
 .product-detail-header .image {
   width: 4.5rem;
   margin-right: 1rem;
 }
-.product-detail-header button {
+.product-detail-header button,
+.product-detail-header a.button {
   color: #1b1b1b;
   border-radius: 30px;
   float: right;
@@ -24,6 +26,47 @@
   cursor: pointer;
   min-width: 150px;
 }
+.product-detail-header a.button {
+  text-decoration: none;
+  box-sizing: border-box;
+}
 .product-detail-header button.outlined {
   background-color: white;
 }
+.product-download,
+.product-install,
+.product-install-open-market {
+  background-color: #f7f7f7;
+  padding: 1em 0;
+  line-height: 1.75;
+}
+/* .fadeInOut {
+  .transition-duration(0, 200ms);
+  .transition-property(visibility, opacity);
+  .transition-delay(0);
+
+  &.hidden {
+    visibility: hidden;
+    .opacity(0);
+    .transition-duration(200ms, 0);
+    .transition-property(opacity, visibility);
+    .transition-delay(0, 200ms);
+  }
+} */
+
+/* .default {
+  opacity: 0;
+  visibility: hidden;
+  top: -10px;
+  transition-duration: 200ms, 200ms, 0;
+  transition-property: opacity, top, visibility;
+  transition-delay: 0, 0, 200ms;
+}
+.hidden {
+  opacity: 1;
+  visibility: visible;
+  top: 0px;
+  transition-duration: 200ms, 200ms, 0;
+  transition-property: opacity, top, visibility;
+  transition-delay: 200ms, 200ms, 0;
+} */

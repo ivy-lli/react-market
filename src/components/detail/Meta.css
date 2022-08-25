@@ -1,6 +1,7 @@
 .product-meta {
   width: 12em;
   line-height: 1.75;
+  flex: 0 0 auto;
 }
 .product-meta-title {
   font-weight: 700;
